@@ -1,0 +1,7 @@
+module.exports = {
+  name: 'j!ping',
+  description: 'Ping!',
+  execute(msg, args) {
+    msg.reply('pong');
+  },
+};

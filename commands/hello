@@ -1,0 +1,13 @@
+module.exports = {
+  name: 'j!hello',
+  title: 'Hello',
+  description: 'Say hi to people!',
+  execute(msg, args) {
+    if (msg.mentions.users.size) {
+      const taggedUser = msg.mentions.users.first();
+      msg.channel.send(`Hello ${taggedUser.username}! How are you?`);
+    } else {
+      msg.reply('Please tag a valid user!');
+    }
+  },
+};

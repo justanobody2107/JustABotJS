@@ -1,0 +1,18 @@
+const Discord = require('discord.js');
+module.exports = {
+  name: 'j!help',
+  title: 'Help',
+  description: 'Ask for help!',
+  execute(msg, args) {
+    const command = args.shift().toLowerCase();
+    const file = require('./'+command);
+    function turnToEmbed(object) {
+      return new Discord.MessageEmbed()
+      .setColor("RANDOM")
+      .setTitle("Some handy dandy info on: "+object.title)
+      .addField("Description:",object.description,true)
+      .addField("Usage:",object.usage,true)
+      .setFooter("JustABotJS a0.0.1");}
+    msg.channel.send({ embed: turnToEmbed(file) });
+  },
+};

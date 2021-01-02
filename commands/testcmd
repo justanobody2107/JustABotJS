@@ -1,0 +1,8 @@
+module.exports = {
+  name: 'j!test',
+  title: 'Test',
+  description: 'Testing command!',
+  execute(msg, args) {
+    msg.reply("Test!")
+  },
+};

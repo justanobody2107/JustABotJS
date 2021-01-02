@@ -4,15 +4,29 @@ module.exports = {
   title: 'Help',
   description: 'Ask for help!',
   execute(msg, args) {
-    const command = args.shift().toLowerCase();
-    const file = require('./'+command);
+    try{
+      const command = args.shift().toLowerCase();
+      const file = require('./'+command);
+      msg.channel.send({embed: turnToEmbed(file)});
+    }catch (error) {
+      console.error(error);
+      msg.channel.send({embed: turnToEmbedNoObject()});
+    }
+    function turnToEmbedNoObject(){
+      return new Discord.MessageEmbed()
+      .setColor("RANDOM")
+      .setTitle("Some handy dandy info on commands")
+      .addField("Description: N/A")
+      .addField("Usage: N/A")
+      .setFooter("JustABotJS a0.0.1");
+    }
     function turnToEmbed(object) {
       return new Discord.MessageEmbed()
       .setColor("RANDOM")
       .setTitle("Some handy dandy info on: "+object.title)
       .addField("Description:",object.description,true)
-      .addField("Usage:",object.usage,true)
-      .setFooter("JustABotJS a0.0.1");}
-    msg.channel.send({ embed: turnToEmbed(file) });
+      .addField("Usage:",object.name,true)
+      .setFooter("And voila :P");
+    }
   },
 };
